@@ -52,15 +52,6 @@ if (isset($_POST['submit'])) {
     $startIndex = $value1;
     $endIndex = $value2;
 
-    //Mocht ik echt de data moeten aanpassen voor startup van de laatst geselecteerde.   <---- (Value's moeten nog aangepast worden)
-    // $file = 'settings.php'; 
-    // //read file
-    // $content = file_get_contents($file);
-    // // here goes your update
-    // $content = preg_replace('/\$your_variable=\"(.*?)\";/', '$your_variable="hi Joshua";', $content);
-    // //write file
-    // file_put_contents($file, $content);
-
     //Distance calculate
     $miles = $distances[$value1][$value2] / $kmToMiles;
 }
@@ -83,17 +74,24 @@ if (isset($_POST['submit'])) {
     echo 'Aantal Miles: ' . $miles . '<br><br>';
     ?>
     <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+
         <select name="select1">
             <?php
+            echo '<option value="' . $startIndex . '">' . $startIndex . '</option>';
             foreach ($distances as $key => $value) {
-                echo '<option value="' . $key . '">' . $key . '</option>';
+                if ($key != $startIndex) {
+                    echo '<option value="' . $key . '">' . $key . '</option>';
+                }
             } ?>
         </select>
 
         <select name="select2">
             <?php
+            echo '<option value="' . $endIndex . '">' . $endIndex . '</option>';
             foreach ($distances as $key => $value) {
-                echo '<option value="' . $key . '">' . $key . '</option>';
+                if ($key != $endIndex) {
+                    echo '<option value="' . $key . '">' . $key . '</option>';
+                }
             } ?>
         </select>
 
