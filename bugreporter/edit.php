@@ -7,10 +7,12 @@ if (isset($_POST['id'])) {
     $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
 
     //Define query
-    $query = "SELECT * FROM bug WHERE ID = $id";
+    $query = "SELECT * FROM bug WHERE ID = ?";
 
     //prepare the data definition query
     $stmt = mysqli_prepare($conn, $query) or die(mysqli_error($conn));
+
+    mysqli_stmt_bind_param($stmt, "s", $id) or die('Binding went wrong');
 
     //Execute the prepared statement
     mysqli_stmt_execute($stmt) or die('<br>message');
