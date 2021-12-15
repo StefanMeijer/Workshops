@@ -1,7 +1,7 @@
 <?php
 require_once('dbconnect.php');
 if (isset($_POST['submit'])) {
-    if (isset($_POST['playback_id']) && isset($_POST['artist']) && isset($_POST['video_title'])) {
+    if (!empty($_POST['playback_id']) && !empty($_POST['artist']) && !empty($_POST['video_title'])) {
 
         $playback_id = filter_input(INPUT_POST, 'playback_id', FILTER_SANITIZE_SPECIAL_CHARS);
         $artist = filter_input(INPUT_POST, 'artist', FILTER_SANITIZE_SPECIAL_CHARS);
